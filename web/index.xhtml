@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head> 
+        <title><ui:insert name="titulo"> </ui:insert></title>
+    </h:head>
+    <h:body>
+        <b:container> 
+            <h:form id="formEdicao">
+                  <b:navBar  brand="SW TRABALHO FINAL"  />
+                <h:panelGroup>
+                    <br />
+                    <br />
+                    <br />
+                    <p:messages/>
+                    <p:layoutUnit position="center">
+                        <h:outputLabel value="Tipo de Frete: "/>
+                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                            <p:selectOneRadio id="frete" value="#{controle.objeto.codigoServico}"
+                                              required="true" requiredMessage="O Tipo de Frete é Obrigatorio">
+                                <f:selectItem itemLabel="PAC" itemValue="41106" />
+                                <f:selectItem itemLabel="SEDEX" itemValue="04014" />
+                            </p:selectOneRadio>
+                        </h:panelGrid>
+                        <br />
+                        <h:outputLabel value="CEP Destino: "/>
+                        <h:inputText value="#{controle.objeto.cepDestino}"
+                                     size="10" maxlength="10"
+                                     required="true" requiredMessage="O CEP de Destino é Obrigatorio"/>
+                        <br />
+                        <h:outputLabel value="Peso"/>
+                        <h:inputText value="#{controle.objeto.peso }"
+                                     size="5" maxlength="5"
+                                     required="true" requiredMessage="O Peso  é Obrigatorio"/>
+                        <h:outputLabel value="Valor Declarado: "/>
+                        <h:inputText value="#{controle.objeto.valorDeclarado}"
+                                     size="10" maxlength="10"
+                                     required="true" requiredMessage="Valor Declarado é Obrigatorio"/>
+
+                        <br />
+                        <br />
+                        <h:outputLabel value="Valor do Frete: "/>
+                        <h:inputText value="#{controle.objeto.valorFrete}"
+                                     size="10" readonly="true"/>
+                        <h:outputLabel value="Prazo de entrega: "/>
+                        <h:inputText value="#{controle.objeto.prazoEntrega}"
+                                     size="12" readonly="true"/>
+                        <br />
+                        <br />
+                        <p:commandButton value="Calcular Frete" icon=" ui-icon-calculator"
+                                         actionListener="#{controle.buscar()}"
+                                         update="formEdicao"/>
+                    </p:layoutUnit>
+                    <p:layoutUnit position="south" >
+                        <ui:include src="ajaxstatus.xhtml"/>   
+                            <div align="center">Trabalho Final SW - VITOR MATEUS TEIXEIRA </div>
+                    </p:layoutUnit>
+                </h:panelGroup>
+            </h:form>
+        </b:container>
+    </h:body>
+
+</html>
